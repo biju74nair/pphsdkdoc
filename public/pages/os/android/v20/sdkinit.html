@@ -1,0 +1,33 @@
+<div id="setup">
+        <h3>SDK Initialize
+        <a href='#'><p data-clipboard-action="copy" data-clipboard-target="#initcode" class="copy-button glyphicon glyphicon-copy"></p></a></h3>
+        <pre><code id='initcode' class="hljs java">
+        RetailSDK.initialize(this, new RetailSDK.AppState()
+        {
+                /**
+                * The integrating App should return an activity on which the 
+                * SDK will launch it's UI elements 
+                * like card reader finder, payment processing alerts
+                */
+                @Override
+                public Activity getCurrentActivity()
+                {
+                        return TransactionActivity.this; //TODO: Your Activity Object
+                }
+
+
+                @Override
+                public boolean getIsTabletMode()
+                {
+                        return false;
+                }
+        });
+        </code></pre>
+</div>
+<ul id="pager" class="pager">
+<li class="previous" onclick="goto('os/android/v20','setup.html')"><a href="#"> << Setup </a></li>
+<li class="next" onclick="goto('os/android/v20','authentication.html')">
+        <a href="#">Authentication >></a>
+</li>
+</ul>
+            

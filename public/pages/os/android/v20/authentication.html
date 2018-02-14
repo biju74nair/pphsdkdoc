@@ -1,0 +1,73 @@
+<div id="authentication">
+        <h3>Authentication -
+            <small>Setting up Access Token for API Calls</small>
+        </h3><br>
+
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Choose the auth option</legend>
+            <div onclick='showAuthOptions()'>
+                <div class="radio">
+                <label><input type="radio" value='test' name="authradio">Use Test Account <font color='red'><small><i>(Use this only if you need to try our SDK)</i></small></font></label>
+                </div>
+                <div class="radio ">
+                <label><input type="radio" value="actual" name="authradio">Use Actual Merchant Account</label>
+                </div>
+            </div>
+        </fieldset>
+
+        <div style='display:none' id='test'>
+        <h4>Use Test Account</h4>
+        
+          Creating Credentials Object
+            <a href='#'><p data-clipboard-action="copy" data-clipboard-target="#credential" class="copy-button glyphicon glyphicon-copy"></p></a>
+            <pre><code id='credential' class="hljs java">
+        SdkCredential credential = new SdkCredential("sandbox", "&lt;access_token&gt;");
+            </code></pre>
+            <div class="alert alert-info">
+                <p><button onclick="grabAccessToken()">Click Here</button> to replace above code with a test access token.
+                </p>
+                </div>
+            </div>
+
+
+
+            <div style='display:none' id='actual'>
+        <h4>Use Merchant Account</h4>
+        <a href='/pages/createmerchant.html' target="_blank">1. Create Merchant Account</a><br>
+        <a class='lightBoxVideoLink' rel='youtube' href='https://www.youtube.com/embed/JQJDI9fOZEE?autoplay=true'>2. Create Rest Application</a><br>
+        <a href='/pages/createmerchant.html' target="_blank">3. Generating Refresh Token Token</a><br>
+        4. Generating Access Token
+        <pre><code id='accesstoken' class="hljs shell">
+        curl -X POST \
+        https://api.sandbox.paypal.com/v1/identity/openidconnect/tokenservice \
+        -H 'Authorization: Basic &lt;base64 encoded of client_id:client_secret&gt;' \
+        -H 'Content-Type: application/x-www-form-urlencoded' \
+        -d 'grant_type=refresh_token&amp;refresh_token=&lt;refresh_token&gt;'
+        </code></pre>
+        <p>Use the above <strong>curl </strong><a href='#'><span data-clipboard-action="copy" data-clipboard-target="#accesstoken" class="copy-button glyphicon glyphicon-copy"> 
+             </a> command to generate access token.
+        </span></p>
+            
+        <p><i>You can obtain the client_id, client_secret from the REST applciation page (Make sure you switch between Sandbox/Live for respective credentials)</i></p>
+        </p>
+        <div class="alert alert-warning">
+            <strong>Caution!</strong> We highly recommend not to store the client_id, client_secret in mobile and
+            fetch the access token in runtime using your mid-tier services or <a href="#" class="alert-link">sample server</a>.
+        </div>
+        5. Creating Credentials Object
+        <a href='#'><p data-clipboard-action="copy" data-clipboard-target="#credential" class="copy-button glyphicon glyphicon-copy"></p></a>
+        <pre><code class="hljs java">
+            SdkCredential credential = new SdkCredential("sandbox", "&lt;access_token&gt;");
+        </code></pre>
+    </div>
+    <ul id="pager" class="pager">
+            <li class="previous" onclick="goto('os/android/v20','sdkinit.html')">
+                <a href="#"><< Initialize SDK</a>
+            </li>
+            <li class="next" onclick="goto('os/android/v20','merchant.html')">
+            <a href="#">Initializing Merchant >></a>
+        </li>
+    </ul>
+    <script>
+   $('.lightBoxVideoLink').simpleLightbox();
+    </script>

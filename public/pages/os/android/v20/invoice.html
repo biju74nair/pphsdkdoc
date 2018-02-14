@@ -1,0 +1,22 @@
+<div id="invoice">
+        <h3>Creating Invoice </h3>
+        Create Invoice using the below code <a href='#'><span data-clipboard-action="copy" data-clipboard-target="#invoicecode" class="copy-button glyphicon glyphicon-copy"></span></a>
+        <pre><code id='invoicecode' class="hljs java">
+        final BigDecimal quantity = new BigDecimal(1);
+        final BigDecimal unitPrice = new BigDecimal(1);
+        final Integer itemId = 1;
+        final String detailId = null;
+
+        Invoice invoice = new Invoice(null);
+        invoice.addItem("Item", quantity,unitPrice,itemId,detailId);
+        </code>
+    </pre>
+</div>
+<ul id="pager" class="pager">
+        <li class="previous" onclick="goto('os/android/v20','devices.html')">
+            <a href="#"><< Registering Devices</a>
+        </li><li class="next" onclick="goto('os/android/v20','payment.html')">
+        <a href="#">Payment >></a>
+</li>
+</ul>
+            

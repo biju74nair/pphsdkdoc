@@ -1,0 +1,47 @@
+<div id="payment">
+        <h3>Payments</h3>
+        <br>1. Begin Payments <a href='#'><p data-clipboard-action="copy" data-clipboard-target="#payment_begin_code" class="copy-button glyphicon glyphicon-copy"></p></a>
+        <pre><code id='payment_begin_code' class="hljs java">
+PayPalHereSDK.getTransactionManager().beginPayment(invoice,new TransactionControllerAdaptor());
+        </code> </pre>
+        Download <a href='os/android/v16/TransactionControllerAdaptor.java' target="_blank">TransactionControllerAdaptor.java</a> for testing purpose.
+        <br><br>
+        2. Card Details <a href='#'><p data-clipboard-action="copy" data-clipboard-target="#payment_card_code" class="copy-button glyphicon glyphicon-copy"></p></a>
+        <pre><code id='payment_card_code' class="hljs java">
+        //For KeyIn Case
+        String ccNum = "4024007163304362"; //This is sample CC took from getcreditcardnumbers.com
+        String exp = "0320";
+        String cvv = "678";
+        String zipcode = "95678";
+
+        ManualEntryCardData mManualCard =
+                DomainFactory.newManualEntryCardData(ccNum, exp, cvv,zipcode);
+
+        //For other cases read the card data
+        </code> </pre>
+        <br>3. Accept Payments <a href='#'><p data-clipboard-action="copy" data-clipboard-target="#payment_accept_code" class="copy-button glyphicon glyphicon-copy"></p></a>
+        <pre><code id='payment_accept_code' class="hljs java">
+        PayPalHereSDK.getTransactionManager().processPayment(mManualCard, 
+                new TransactionControllerAdaptor(), 
+                new DefaultResponseHandler&lt;TransactionManager.PaymentResponse, 
+                                    PPError&lt;TransactionManager.PaymentErrors&gt;&gt;() {
+        @Override
+        public void onSuccess(TransactionManager.PaymentResponse paymentResponse) {
+            //TODO: Handle Success Payment
+        }
+    
+        @Override
+        public void onError(PPError&lt;TransactionManager.PaymentErrors&gt; paymentErrorsPPError) {
+           //TODO: Handle Failure
+        }
+    });
+        </code> </pre>
+</div>
+<ul id="pager" class="pager">
+        <li class="previous" onclick="goto('os/android/v16','invoice.html')">
+            <a href="#"><< Create Invoice</a>
+        </li><li class="next" onclick="goto('os/android/v16','final.html')">
+        <a href="#">Final >></a>
+</li>
+</ul>
+            

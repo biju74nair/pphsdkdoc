@@ -1,0 +1,58 @@
+<div id="payment">
+        <h3>Payments</h3>
+        <br>1. Create Transaction <a href='#'><p data-clipboard-action="copy" data-clipboard-target="#payment_txn_code" class="copy-button glyphicon glyphicon-copy"></p></a>
+        <pre><code id='payment_txn_code' class="hljs java">
+RetailSDK.getTransactionManager().createTransaction(invoice, 
+                        new TransactionManager.TransactionCallback()
+{
+        @Override
+        public void transaction(RetailSDKException error, TransactionContext transactionContext)
+        {
+        //TODO: Save the context for further payment actions
+        //TODO: Add Transaction Completion Handler 
+        //TODO: Begin Payment Here If You Have Card or set setCardPresentedHandler 
+        // and continue payment there.
+        }
+});</code> </pre>
+        <br>2. Add Transaction Completion Handler <a href='#'><p data-clipboard-action="copy" data-clipboard-target="#completion_handler_code" class="copy-button glyphicon glyphicon-copy"></p></a>
+        <pre><code id='completion_handler_code' class="hljs java">
+transactionContext.setCompletedHandler(new TransactionContext.TransactionCompletedCallback() {
+        public void transactionCompleted(RetailSDKException error, 
+                        TransactionRecord transactionRecord){
+                if(error == null)
+                // TODO: handle success
+                else
+                // TODO: handle failed
+        }
+});
+        
+        </code> </pre>
+        <br>3. Create Card <a href='#'><p data-clipboard-action="copy" data-clipboard-target="#payment_createcard_code" class="copy-button glyphicon glyphicon-copy"></p></a>
+                <pre><code id='payment_createcard_code' class="hljs java">
+                //This is sample CC took from getcreditcardnumbers.com
+                String cardNumber = "4024007163304362"; 
+                String expiration = "032020"; //MMYYYY
+                String cvv = "678";
+        
+                ManuallyEnteredCard card = new ManuallyEnteredCard();
+                card.setCardNumber(cardNumber);
+                card.setCVV(cvv);
+                card.setExpiration(expiration);
+                
+                </code> </pre>
+        <br>4. Begin Payments <a href='#'><p data-clipboard-action="copy" data-clipboard-target="#payment_begin1_code" class="copy-button glyphicon glyphicon-copy"></p></a>
+        <pre><code id='payment_begin1_code' class="hljs java">
+                transactionContext.continueWithCard(card);
+        </code> </pre>
+        Once 'continueWithCard' is invoked, you will see a 'Processing...' dialog in your App, 
+        procceding with 'Receipt' screen if success or 
+        'Failure' screen if transaction failed. 
+</div>
+<ul id="pager" class="pager">
+        <li class="previous" onclick="goto('os/android/v20','invoice.html')">
+            <a href="#"><< Create Invoice</a>
+        </li><li class="next" onclick="goto('os/android/v20','final.html')">
+        <a href="#">Final >></a>
+</li>
+</ul>
+            

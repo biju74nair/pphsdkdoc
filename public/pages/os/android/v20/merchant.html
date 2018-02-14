@@ -1,0 +1,30 @@
+<div id="merchant">
+        <h3>Merchant -
+            <small>Initializing up Merchant</small>
+        </h3>
+        Use the below code <a href='#'><span data-clipboard-action="copy" data-clipboard-target="#merchantinit" class="copy-button glyphicon glyphicon-copy"></span></a> to initialize the merchant (<i>use the 'credential' object created in previous step</i>)
+        
+        <pre><code id='merchantinit' class="hljs java">
+        RetailSDK.initializeMerchant(credential, new RetailSDK.MerchantInitializedCallback()
+        {
+            @Override
+            public void merchantInitialized(RetailSDKException error, Merchant merchant)
+            {
+                //TODO: Connect to Device or Create Transaction
+            }
+        });
+        </code></pre>
+        <p></p>
+        </p>
+    </div>
+    <ul id="pager" class="pager">
+            <li class="previous" onclick="goto('os/android/v20','authentication.html')">
+                <a href="#"><< Authentication</a>
+            </li>
+            <li class="next" onclick="goto('os/android/v20','devices.html')">
+            <a href="#">Registering Devices >></a>
+        </li>
+    </ul>
+    <script>
+   $('.lightBoxVideoLink').simpleLightbox();
+    </script>

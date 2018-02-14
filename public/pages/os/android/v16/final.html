@@ -1,0 +1,76 @@
+<div id="final">
+        <h3>Final Simple Code</h3>
+        Your final code will looks like below
+        <a href='#'><p data-clipboard-action="copy" data-clipboard-target="#finalcode" class="copy-button glyphicon glyphicon-copy"></p></a></h3>
+        <pre><code id='finalcode' class="hljs java">
+        import com.paypal.merchant.sdk.AuthenticationListener;
+        import com.paypal.merchant.sdk.MerchantManager;
+        import com.paypal.merchant.sdk.PayPalHereSDK;
+        import com.paypal.merchant.sdk.TransactionController;
+        import com.paypal.merchant.sdk.TransactionManager;
+        import com.paypal.merchant.sdk.domain.DefaultResponseHandler;
+        import com.paypal.merchant.sdk.domain.DomainFactory;
+        import com.paypal.merchant.sdk.domain.Invoice;
+        import com.paypal.merchant.sdk.domain.ManualEntryCardData;
+        import com.paypal.merchant.sdk.domain.Merchant;
+        import com.paypal.merchant.sdk.domain.PPError;
+        import com.paypal.merchant.sdk.domain.SecureCreditCard;
+        import com.paypal.merchant.sdk.domain.credentials.OAuthCredentials;
+        import com.paypal.merchant.sdk.internal.domain.InvoiceImpl;
+        
+        import java.math.BigDecimal;
+        
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        
+        PayPalHereSDK.init(getApplicationContext(), PayPalHereSDK.Sandbox);
+        PayPalHereSDK.registerAuthenticationListener(new AuthenticationListener() {
+            @Override
+            public void onInvalidToken() {
+                //TODO: "Invalid Token");
+            }
+
+        });
+
+        PayPalHereSDK.setCredentials(new OAuthCredentials("&lt;ACCESS_TOKEN&gt;"), new DefaultResponseHandler&lt;Merchant,
+                PPError&lt;MerchantManager.MerchantErrors&gt;&gt;() {
+            @Override
+            public void onSuccess(Merchant merchant) {
+
+
+                PayPalHereSDK.getTransactionManager().beginPayment(new BigDecimal(1.00),new TransactionControllerAdaptor());
+
+
+                ManualEntryCardData mManualCard =
+                        DomainFactory.newManualEntryCardData("4024007163304362", "0320", "678","95678");
+                PayPalHereSDK.getTransactionManager().processPayment(mManualCard,
+                        new TransactionControllerAdaptor(),
+                        new DefaultResponseHandler&lt;TransactionManager.PaymentResponse,
+                                PPError&lt;TransactionManager.PaymentErrors&gt;&gt;() {
+                            @Override
+                            public void onSuccess(TransactionManager.PaymentResponse paymentResponse) {
+                                //TODO: "Success Payment");
+                            }
+
+                            @Override
+                            public void onError(PPError&lt;TransactionManager.PaymentErrors&gt; paymentErrorsPPError) {
+                                //TODO: "Payment Failed"
+                            }
+                        });
+            }
+
+            @Override
+            public void onError(PPError&lt;MerchantManager.MerchantErrors&gt; merchantErrorsPPError) {
+                //TODO: Handle Error
+            }
+        });
+
+        </code></pre>
+        Download <a href='os/android/v16/MainActivity.java' target="_blank">Sample</a> for testing purpose.
+    </div>
+    <h3>Feedback</h3><button type="button" class="btn btn-success">:) Worked :)</button>
+    <button type="button" class="btn btn-danger">:( Something Missing :(</button>
+    
+<ul id="pager" class="pager">
+<li class="previous" onclick="goto('os/android/v16','payment.html')"><a href="#"> << Payment</a></li>
+</ul>
+            

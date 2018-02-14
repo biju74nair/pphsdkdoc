@@ -1,0 +1,28 @@
+<div id="setup">
+    <h3>Setup -
+        <small>Adding SDK to your project</small>
+    </h3>
+    <br> 1. Add SDK Dependency to build.gradle<br>
+    Open <i>build.gradle</i> of you <i>app</i> and verify the following entries are there, if not add it.
+    <a href='#'><p data-clipboard-action="copy" data-clipboard-target="#buildcode" class="copy-button glyphicon glyphicon-copy"></p></a>
+    <pre><code id='buildcode' class="hljs json">
+    dependencies {
+        api('com.paypal.retail:here-sdk-debug:2.0.0@aar'){transitive=true}
+        compile 'com.google.android.gms:play-services-location:8.1.0'
+
+        //other entries
+    }
+                </code></pre>
+    ReBuild the project if you have added these lines.
+    <br><br>2. Adding Necessary Permission (AndroidManifest.xml)
+    <a href='#'><p data-clipboard-action="copy" data-clipboard-target="#permissioncode" class="copy-button glyphicon glyphicon-copy"></p></a>
+    <code id='permissioncode' class="hljs xml">
+                &lt;uses-permission android:name="android.permission.INTERNET" /&gt;<br>         
+                    </code>
+</div>
+<ul id="pager" class="pager">
+    <!-- <li class="previous" onclick="goto('os/android','')"><a href="#">Previous</a></li> -->
+    <li class="next" onclick="goto('os/android/v20','sdkinit.html')">
+        <a href="#">Initialize SDK >></a>
+    </li>
+</ul>

@@ -1,0 +1,35 @@
+<div id="devices">
+                <h3>Register Devices
+                </h3>
+        <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Choose the device type</legend>
+                <div onclick='registerDevices()'>
+                <div class="radio">
+                <label><input type="radio" value='radio' name="optradio">Radio Jack</label>
+                </div>
+                <div class="radio ">
+                <label><input type="radio"  name="optradio">M10</label>
+                </div>
+                <div class="radio ">
+                <label><input type="radio"  name="optradio">Ingenigo</label>
+                </div>
+                <div class="radio">
+                <label><input type="radio" checked value='no' name="optradio">Do not have one (try KeyIn option)</label>
+                </div>
+                </div>
+            </fieldset>
+            <div style='display:none' id='no'>No need to register, proceed</div>
+            <div style='display:none' id="register">
+                1. Register Card Reader Listener<a href='#'><p data-clipboard-action="copy" data-clipboard-target="#registercode" class="copy-button glyphicon glyphicon-copy"></p></a></h3>
+                <code id='registercode' class="hljs java">
+                        PayPalHereSDK.getCardReaderManager().registerCardReaderConnectionListener(this);
+                </code>
+                </div>
+    </div>
+    <ul id="pager" class="pager">
+        <li class="previous" onclick="goto('os/android/v16','authentication.html')">
+                <a href="#"><< Authentication</a>
+        </li>
+        <li class="next" onclick="goto('os/android/v16','invoice.html')"><a href="#">Create Invoice >></a></li>
+</ul>
+

@@ -1,0 +1,58 @@
+<div id="setup">
+        <h3>Authentication -
+            <small>Setting up Access Token for API Calls</small>
+        </h3>
+        <br> 1. Register Authentication Listener
+        <a href='#'><p data-clipboard-action="copy" data-clipboard-target="#authcode" class="copy-button glyphicon glyphicon-copy"></p></a>
+        <pre><code id='authcode' class="hljs java">
+        PayPalHereSDK.registerAuthenticationListener(new AuthenticationListener() {
+            @Override
+            public void onInvalidToken() {
+                // Handle Invalid Token
+            }
+
+        });
+        </code></pre>
+        <br> 2. Generating Access Token <br>
+        For inital setup, you can use the following <strong>curl</strong> command to generate access token.
+        <a href='#'><p data-clipboard-action="copy" data-clipboard-target="#accesstoken" class="copy-button glyphicon glyphicon-copy"></p></a>
+        <pre><code id='accesstoken' class="hljs shell">
+        curl -X POST \
+        https://api.sandbox.paypal.com/v1/identity/openidconnect/tokenservice \
+        -H 'Authorization: Basic &lt;base64 encoded of client_id:client_secret&gt;' \
+        -H 'Content-Type: application/x-www-form-urlencoded' \
+        -d 'grant_type=refresh_token&amp;refresh_token=&lt;refresh_token&gt;'
+        </code></pre>
+        <p>If you haven't created an application, grab a testing accesstoken by <button title="Below code will be changed with new access token" onclick="grabAccessToken()">Clicking Here</button> (Below code will be changed with new access token) or follow 
+        <a href='/pages/createapp.html' target="_blank">Create Application
+        </a></p>
+        <div class="alert alert-warning">
+            <strong>Caution!</strong> We highly recommend not to store the client_id, client_secret in mobile and
+            fetch the access token in runtime using your mid-tier services or <a href="#" class="alert-link">sample server</a>.
+        </div>
+        3. Setting Credentials
+        <a href='#'><p data-clipboard-action="copy" data-clipboard-target="#credential" class="copy-button glyphicon glyphicon-copy"></p></a>
+        <pre><code id='credential' class="hljs java">
+        PayPalHereSDK.setCredentials(new OAuthCredentials("&lt;ACCESS_TOKEN&gt;"), 
+                new DefaultResponseHandler&lt;Merchant, PPError&lt;MerchantManager.MerchantErrors&gt;&gt;() {
+            @Override
+            public void onSuccess(Merchant merchant) {
+                //TODO: Invoke Payment
+            }
+
+            @Override
+            public void onError(PPError&lt;MerchantManager.MerchantErrors&gt; merchantErrorsPPError) {
+                //TODO: Handle Error
+            }
+        });
+            </code></pre>
+    </div>
+    <ul id="pager" class="pager">
+            <li class="previous" onclick="goto('os/android/v16','sdkinit.html')">
+                <a href="#"><< Initialize SDK</a>
+            </li>
+            <li class="next" onclick="goto('os/android/v16','devices.html')">
+            <a href="#">Registering Devices >></a>
+        </li>
+    </ul>
+    
