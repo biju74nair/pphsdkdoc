@@ -20,9 +20,25 @@
             </fieldset>
             <div style='display:none' id='no'>No need to register, proceed</div>
             <div style='display:none' id="register">
-                1. Register Card Reader Listener<a href='#'><p data-clipboard-action="copy" data-clipboard-target="#devicecode" class="copy-button glyphicon glyphicon-copy"></p></a></h3>
+                1. Connect to Reader <a href='#'><p data-clipboard-action="copy" data-clipboard-target="#devicecode" class="copy-button glyphicon glyphicon-copy"></p></a></h3>
                 <code id='devicecode' class="hljs java">
-                RetailSDK.getDeviceManager().connectToLastActiveReader();
+                RetailSDK.getDeviceManager().searchAndConnect(new DeviceManager.ConnectionCallback()
+                {
+                        @Override
+                        public void connection(final RetailSDKException error, final PaymentDevice cardReader)
+                        {
+                        
+                                if (error == null)
+                                {
+                                        // Connected to card reader" + cardReader.getId()
+                                        // Ready to Take Payments
+                                }
+                                else
+                                {
+                                        // Card reader connection error: " + error.getMessage()
+                                }
+                        }
+                });
                 </code>
                 </div>
     </div>
